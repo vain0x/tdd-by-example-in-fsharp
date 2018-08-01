@@ -25,3 +25,10 @@ type Franc(amount: int) =
 
   member this.Times(multiplier) =
     Franc(amount * multiplier)
+
+type Money with
+  static member Dollar(amount: int) =
+    Dollar(amount)
+
+  static member Franc(amount: int) =
+    Franc(amount)
