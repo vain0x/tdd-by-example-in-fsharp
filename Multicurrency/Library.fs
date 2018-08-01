@@ -8,6 +8,7 @@ type Money(amount: int) =
     match obj with
     | :? Money as other ->
       this.Amount = other.Amount
+      && this.GetType() = other.GetType()
     | _ -> false
 
   override this.GetHashCode() =

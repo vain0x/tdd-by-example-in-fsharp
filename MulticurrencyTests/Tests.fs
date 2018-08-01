@@ -18,6 +18,7 @@ module DollarTests =
   let testEquality () =
     Dollar(5) |> is (Dollar(5))
     Dollar(5) <> Dollar(6) |> is true
+    Dollar(5).Equals(Franc(5)) |> is false
 
 module FrancTests =
   [<Fact>]
