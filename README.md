@@ -57,8 +57,9 @@ dotnet test MulticurrencyTests
 - ~~compare with null~~ (no problem in F#)
 - compare with objects of different type
 - duplication between Dollar and Franc
-- generalize equals
+- [x] generalize equals
 - generalize hashCode
+- compare Franc and Dollar
 
 ## Links
 

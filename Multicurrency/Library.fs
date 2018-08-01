@@ -1,31 +1,26 @@
 namespace Multicurrency
 
+[<AbstractClass>]
+type Money(amount: int) =
+  member private this.Amount = amount
+
+  override this.Equals(obj :obj) =
+    match obj with
+    | :? Money as other ->
+      this.Amount = other.Amount
+    | _ -> false
+
+  override this.GetHashCode() =
+    0
+
 type Dollar(amount: int) =
+  inherit Money(amount)
+
   member this.Times(multiplier) =
     Dollar(amount * multiplier)
 
-  member private this.Amount = amount
-
-  override this.Equals(obj :obj) =
-    match obj with
-    | :? Dollar as other ->
-      this.Amount = other.Amount
-    | _ -> false
-
-  override this.GetHashCode() =
-    0
-
 type Franc(amount: int) =
+  inherit Money(amount)
+
   member this.Times(multiplier) =
     Franc(amount * multiplier)
-
-  member private this.Amount = amount
-
-  override this.Equals(obj :obj) =
-    match obj with
-    | :? Franc as other ->
-      this.Amount = other.Amount
-    | _ -> false
-
-  override this.GetHashCode() =
-    0
