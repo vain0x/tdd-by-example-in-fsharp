@@ -4,7 +4,7 @@ type Dollar(amount: int) =
   member this.Times(multiplier) =
     Dollar(amount * multiplier)
 
-  member this.Amount = amount
+  member private this.Amount = amount
 
   override this.Equals(obj :obj) =
     match obj with
