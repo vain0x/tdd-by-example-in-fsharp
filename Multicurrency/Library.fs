@@ -1,4 +1,5 @@
 namespace Multicurrency
 
 type Dollar(amount: int) =
-  class end
+  member this.Times(multiplier) =
+    ()
