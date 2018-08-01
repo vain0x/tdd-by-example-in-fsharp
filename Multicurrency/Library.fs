@@ -7,7 +7,10 @@ type Dollar(amount: int) =
   member this.Amount = amount
 
   override this.Equals(obj :obj) =
-    true
+    match obj with
+    | :? Dollar as other ->
+      this.Amount = other.Amount
+    | _ -> false
 
   override this.GetHashCode() =
     0

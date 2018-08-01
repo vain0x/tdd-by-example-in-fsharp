@@ -19,3 +19,4 @@ let testMultiplication () =
 [<Fact>]
 let testEquality () =
   Dollar(5) |> is (Dollar(5))
+  Dollar(5) <> Dollar(6) |> is true
