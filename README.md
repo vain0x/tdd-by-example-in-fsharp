@@ -41,6 +41,11 @@ Try it works. (One test should pass.)
 dotnet test MulticurrencyTests
 ```
 
+## TODOs
+
+- $10 + 5 CHF = $10 (rate 2:1)
+- $5 * 2 = $10
+
 ## Links
 
 - [新訳版『テスト駆動開発』が出ます - t-wadaのブログ](http://t-wada.hatenablog.jp/entry/tddbook)
