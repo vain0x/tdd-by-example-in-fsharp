@@ -54,6 +54,8 @@ dotnet test MulticurrencyTests
 - round of Money
 - [x] equality
 - [x] hashCode
+- ~~compare with null~~ (no problem in F#)
+- compare with objects of different type
 
 ## Links
 
