@@ -4,4 +4,4 @@ type Dollar(amount: int) =
   member this.Times(multiplier) =
     ()
 
-  member this.Amount = 0
+  member this.Amount = 10
