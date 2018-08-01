@@ -52,6 +52,8 @@ dotnet test MulticurrencyTests
 - make private amount
 - [x] side effects of Dollar
 - round of Money
+- equality
+- hashCode
 
 ## Links
 

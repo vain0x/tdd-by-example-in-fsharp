@@ -5,3 +5,9 @@ type Dollar(amount: int) =
     Dollar(amount * multiplier)
 
   member this.Amount = amount
+
+  override this.Equals(obj :obj) =
+    true
+
+  override this.GetHashCode() =
+    0

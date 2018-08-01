@@ -15,3 +15,7 @@ let testMultiplication () =
 
   let product = five.Times(3)
   product.Amount |> is 15
+
+[<Fact>]
+let testEquality () =
+  Dollar(5) |> is (Dollar(5))
