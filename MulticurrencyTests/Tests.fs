@@ -11,10 +11,10 @@ let is<'T> (actual: 'T) (expected: 'T) =
 let testMultiplication () =
   let five = Dollar(5)
   let product = five.Times(2)
-  product.Amount |> is 10
+  product |> is (Dollar(10))
 
   let product = five.Times(3)
-  product.Amount |> is 15
+  product |> is (Dollar(15))
 
 [<Fact>]
 let testEquality () =
