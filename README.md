@@ -48,7 +48,7 @@ dotnet test MulticurrencyTests
 - [x] no Dollar class
 - [x] no Dollar ctor
 - [x] no Times method
-- no Amount field
+- [x] no Amount field
 
 ## Links
 
