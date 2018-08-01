@@ -1,7 +1,10 @@
 namespace Multicurrency
 
 type Dollar(amount: int) =
-  member this.Times(multiplier) =
-    ()
+  // Redeclare amount as mutable field.
+  let mutable amount = amount
 
-  member this.Amount = 5 * 2
+  member this.Times(multiplier) =
+    amount <- 5 * 2
+
+  member this.Amount = amount
