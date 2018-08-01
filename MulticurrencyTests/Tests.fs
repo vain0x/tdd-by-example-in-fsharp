@@ -18,3 +18,15 @@ module DollarTests =
   let testEquality () =
     Dollar(5) |> is (Dollar(5))
     Dollar(5) <> Dollar(6) |> is true
+
+module FrancTests =
+  [<Fact>]
+  let testMultiplication () =
+    let five = Franc(5)
+    five.Times(2) |> is (Franc(10))
+    five.Times(3) |> is (Franc(15))
+
+  [<Fact>]
+  let testEquality () =
+    Franc(5) |> is (Franc(5))
+    Franc(5) <> Franc(6) |> is true
