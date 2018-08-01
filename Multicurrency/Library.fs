@@ -5,6 +5,6 @@ type Dollar(amount: int) =
   let mutable amount = amount
 
   member this.Times(multiplier) =
-    amount <- 5 * 2
+    amount <- amount * 2
 
   member this.Amount = amount
