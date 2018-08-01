@@ -1,4 +1,4 @@
 namespace Multicurrency
 
-type Dollar =
+type Dollar(amount: int) =
   class end
