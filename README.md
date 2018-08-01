@@ -50,7 +50,7 @@ dotnet test MulticurrencyTests
 - [x] no Times method
 - [x] no Amount field
 - make private amount
-- side effects of Dollar
+- [x] side effects of Dollar
 - round of Money
 
 ## Links
