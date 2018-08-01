@@ -45,7 +45,7 @@ dotnet test MulticurrencyTests
 
 - $10 + 5 CHF = $10 (rate 2:1)
 - $5 * 2 = $10
-- no Dollar class
+- ~~no Dollar class~~
 - no Dollar ctor
 - no Times method
 - no Amount field

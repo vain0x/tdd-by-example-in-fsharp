@@ -2,6 +2,7 @@ module Tests
 
 open System
 open Xunit
+open Multicurrency
 
 let is<'T> (actual: 'T) (expected: 'T) =
   Assert.Equal(expected, actual)
