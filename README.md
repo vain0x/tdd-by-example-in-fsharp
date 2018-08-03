@@ -73,7 +73,7 @@ dotnet test MulticurrencyTests
 - [x] generalize equals
 - generalize hashCode
 - [x] compare Dollar and Franc
-- currencies
+- ~~currencies~~
 - remove Franc.testMultiplication
 
 ## Links
