@@ -1,41 +1,41 @@
-# Diary: Reading "TDD by Example" Japanese edition
+# Diary: Reading "TDD by Example"
 
 ## 1. Go to bookstore
 
 Japanese Edition: [テスト駆動開発【委託】 - 達人出版会](https://tatsu-zine.com/books/test-driven-development)
 
-## 2. Development Environment Construction
+## 2. Build Development Environment
 
-According to [Ionide - Crossplatform F# Editor Tools](http://ionide.io/#getting-started)...
+According to the official page [Ionide - Crossplatform F# Editor Tools](http://ionide.io/#getting-started)...
 
-- Install [.NET Core CLI Tools 2.x](https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netcore2x)
-- Install [Visual Studio Code](https://code.visualstudio.com/)
-- Launch Code (vscode),
-    - install F# extension `ionide-fsharp`,
-    - and reload. (`Control + Shift + P`, type `reload`, Enter)
+- Install development tool: [.NET Core CLI Tools 2.x](https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netcore2x)
+- Install source code editor: [Visual Studio Code](https://code.visualstudio.com/)
+- Launch "Code" (vscode), install F# extension `ionide-fsharp`, and reload.
 
-To generate .gitignore, use <https://www.gitignore.io/api/fsharp,csharp,visualstudio>.
+    *(To reload, press `Control + Shift + P`, input `reload`, and press Enter.)*
+
+- (Omittable) Generate `.gitignore` file by <https://www.gitignore.io/api/fsharp,csharp,visualstudio>
 
 ## 3. Project Scaffolding
 
-Create a project (unit of program), called Multicurrency, and another to test it.
-
 According to [Unit testing F# libraries in .NET Core using dotnet test and xUnit | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-fsharp-with-dotnet-test)...
 
-Open terminal (`Control + Shift + P`, "toggle integrated terminal") and run the following commands.
+Create a project (unit of program) called "Multicurrency", and another one to test it. To do this, open terminal, and run the following commands.
+
+*(To open terminal, in vscode, press `Control + Shift + P`, input `toggle integrated terminal`, and Enter.)*
 
 ```sh
 dotnet new classlib -lang F# --name Multicurrency
 dotnet new xunit -lang F# --name MulticurrencyTests
 ```
 
-Add inter-project reference so that testing project (MulticurrencyTests) refers to tested project (Multicurrency).
+Add inter-project reference so that testing project (MulticurrencyTests) refers to target project (Multicurrency).
 
 ```sh
 dotnet add MulticurrencyTests reference Multicurrency
 ```
 
-Try it works. (One test should pass.)
+Try it works. One test will pass.
 
 ```sh
 dotnet test MulticurrencyTests
@@ -43,16 +43,16 @@ dotnet test MulticurrencyTests
 
 ## 3. Implement Dollar
 
-- Firstly write tests of Dollar type, ignoring other currency
-- Define Dollar with obvious implementation
-- Then generalize it by eliminating duplication
-- Equip equality (bearing record types in mind)
+- Write tests of `Dollar` type
+- Define `Dollar` with obvious implementation
+- Generalize it by eliminating duplication
+- Define `equals` method for structural equality (bearing record types in mind)
 
-## 4. Imlement Franc
+## 4. Implement Franc
 
-- Write tests of Franc and impl by mostly copy-pasting from Dollar
-- Improve equality to make two currencies distinct
-- Eliminatie duplication between them
+- Write implementations and tests for `Franc` type by copy-pasting from `Dollar` type
+- Improve equality defintion so that two currencies are distinct
+- Eliminate code duplication between the two types
 
 ## TODOs
 
@@ -62,7 +62,7 @@ dotnet test MulticurrencyTests
 - [x] no Dollar ctor
 - [x] no Times method
 - [x] no Amount field
-- [x] make private amount
+- [x] make amount private
 - [x] side effects of Dollar
 - round of Money
 - [x] equality
