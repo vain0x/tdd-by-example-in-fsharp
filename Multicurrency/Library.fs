@@ -5,8 +5,8 @@ type Money(amount: int, currency: string) =
 
   member this.Currency = currency
 
-  abstract Times: int -> Money
-  default __.Times(_) = Unchecked.defaultof<_>
+  member this.Times(multiplier) =
+    Money(amount * multiplier, this.Currency)
 
   override this.Equals(obj :obj) =
     match obj with
@@ -27,11 +27,5 @@ type Money(amount: int, currency: string) =
 type Dollar(amount: int) =
   inherit Money(amount, "USD")
 
-  override this.Times(multiplier) =
-    Money(amount * multiplier, this.Currency)
-
 type Franc(amount: int) =
   inherit Money(amount, "CHF")
-
-  override this.Times(multiplier) =
-    Money(amount * multiplier, this.Currency)
