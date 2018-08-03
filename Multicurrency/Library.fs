@@ -1,10 +1,10 @@
 namespace Multicurrency
 
 [<AbstractClass>]
-type Money(amount: int) =
+type Money(amount: int, currency: string) =
   member private this.Amount = amount
 
-  abstract Currency: string
+  member this.Currency = currency
 
   override this.Equals(obj :obj) =
     match obj with
@@ -17,17 +17,13 @@ type Money(amount: int) =
     0
 
 type Dollar(amount: int) =
-  inherit Money(amount)
-
-  override __.Currency = "USD"
+  inherit Money(amount, "USD")
 
   member this.Times(multiplier) =
     Dollar(amount * multiplier)
 
 type Franc(amount: int) =
-  inherit Money(amount)
-
-  override __.Currency = "CHF"
+  inherit Money(amount, "CHF")
 
   member this.Times(multiplier) =
     Franc(amount * multiplier)
