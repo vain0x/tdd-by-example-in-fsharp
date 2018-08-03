@@ -1,12 +1,12 @@
 namespace rec Multicurrency
 
-[<AbstractClass>]
 type Money(amount: int, currency: string) =
   member private this.Amount = amount
 
   member this.Currency = currency
 
   abstract Times: int -> Money
+  default __.Times(_) = Unchecked.defaultof<_>
 
   override this.Equals(obj :obj) =
     match obj with
@@ -28,10 +28,10 @@ type Dollar(amount: int) =
   inherit Money(amount, "USD")
 
   override this.Times(multiplier) =
-    Dollar(amount * multiplier) :> Money
+    Money(amount * multiplier, this.Currency)
 
 type Franc(amount: int) =
   inherit Money(amount, "CHF")
 
   override this.Times(multiplier) =
-    Franc(amount * multiplier) :> Money
+    Money(amount * multiplier, this.Currency)
