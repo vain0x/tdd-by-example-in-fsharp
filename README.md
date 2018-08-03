@@ -41,6 +41,19 @@ Try it works. (One test should pass.)
 dotnet test MulticurrencyTests
 ```
 
+## 3. Implement Dollar
+
+- Firstly write tests of Dollar type, ignoring other currency
+- Define Dollar with obvious implementation
+- Then generalize it by eliminating duplication
+- Equip equality (bearing record types in mind)
+
+## 4. Imlement Franc
+
+- Write tests of Franc and impl by mostly copy-pasting from Dollar
+- Improve equality to make two currencies distinct
+- Eliminatie duplication between them
+
 ## TODOs
 
 - $10 + 5 CHF = $10 (rate 2:1)
