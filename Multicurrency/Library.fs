@@ -1,4 +1,4 @@
-namespace Multicurrency
+namespace rec Multicurrency
 
 [<AbstractClass>]
 type Money(amount: int, currency: string) =
@@ -18,21 +18,20 @@ type Money(amount: int, currency: string) =
   override this.GetHashCode() =
     0
 
-type Dollar(amount: int) =
-  inherit Money(amount, "USD")
-
-  override this.Times(multiplier) =
-    Dollar(amount * multiplier) :> Money
-
-type Franc(amount: int) =
-  inherit Money(amount, "CHF")
-
-  override this.Times(multiplier) =
-    Franc(amount * multiplier) :> Money
-
-type Money with
   static member Dollar(amount: int) =
     Dollar(amount) :> Money
 
   static member Franc(amount: int) =
     Franc(amount) :> Money
+
+type Dollar(amount: int) =
+  inherit Money(amount, "USD")
+
+  override this.Times(multiplier) =
+    Money.Dollar(amount * multiplier)
+
+type Franc(amount: int) =
+  inherit Money(amount, "CHF")
+
+  override this.Times(multiplier) =
+    Money.Franc(amount * multiplier)
