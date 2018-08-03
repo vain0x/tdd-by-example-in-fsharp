@@ -28,10 +28,10 @@ type Dollar(amount: int) =
   inherit Money(amount, "USD")
 
   override this.Times(multiplier) =
-    Dollar(amount * multiplier) :> Money
+    Money(amount * multiplier, this.Currency)
 
 type Franc(amount: int) =
   inherit Money(amount, "CHF")
 
   override this.Times(multiplier) =
-    Franc(amount * multiplier) :> Money
+    Money(amount * multiplier, this.Currency)
