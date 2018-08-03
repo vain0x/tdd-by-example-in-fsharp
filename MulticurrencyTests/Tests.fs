@@ -25,6 +25,7 @@ module DollarTests =
     Money.Dollar(5) |> is (Money.Dollar(5))
     Money.Dollar(5) <> Money.Dollar(6) |> is true
     Money.Dollar(5).Equals(Money.Franc(5)) |> is false
+    Money(5, "CHF") |> is (Money.Franc(5))
 
 module FrancTests =
   [<Fact>]

@@ -1,18 +1,18 @@
 namespace rec Multicurrency
 
-[<AbstractClass>]
 type Money(amount: int, currency: string) =
   member private this.Amount = amount
 
   member this.Currency = currency
 
   abstract Times: int -> Money
+  default __.Times(_) = Unchecked.defaultof<_>
 
   override this.Equals(obj :obj) =
     match obj with
     | :? Money as other ->
       this.Amount = other.Amount
-      && this.GetType() = other.GetType()
+      && this.Currency = other.Currency
     | _ -> false
 
   override this.GetHashCode() =
