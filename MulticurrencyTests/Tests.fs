@@ -7,6 +7,12 @@ open Multicurrency
 let is<'T> (actual: 'T) (expected: 'T) =
   Assert.Equal(expected, actual)
 
+module CurrencyTests =
+  [<Fact>]
+  let testCurrency () =
+    Money.Dollar(1).Currency |> is "USD"
+    Money.Franc(1).Currency |> is "CHF"
+
 module DollarTests =
   [<Fact>]
   let testMultiplication () =
