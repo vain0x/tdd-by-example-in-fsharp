@@ -6,6 +6,8 @@ type Money(amount: int, currency: string) =
 
   member this.Currency = currency
 
+  abstract Times: int -> Money
+
   override this.Equals(obj :obj) =
     match obj with
     | :? Money as other ->
@@ -19,18 +21,18 @@ type Money(amount: int, currency: string) =
 type Dollar(amount: int) =
   inherit Money(amount, "USD")
 
-  member this.Times(multiplier) =
-    Dollar(amount * multiplier)
+  override this.Times(multiplier) =
+    Dollar(amount * multiplier) :> Money
 
 type Franc(amount: int) =
   inherit Money(amount, "CHF")
 
-  member this.Times(multiplier) =
-    Franc(amount * multiplier)
+  override this.Times(multiplier) =
+    Franc(amount * multiplier) :> Money
 
 type Money with
   static member Dollar(amount: int) =
-    Dollar(amount)
+    Dollar(amount) :> Money
 
   static member Franc(amount: int) =
-    Franc(amount)
+    Franc(amount) :> Money
