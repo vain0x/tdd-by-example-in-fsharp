@@ -2,7 +2,11 @@ namespace rec Multicurrency
 
 type Bank() =
   member this.Reduce(expr: IExpr, currency: string) =
-    Money.Dollar(10)
+    match expr with
+    | :? Money as money ->
+      money
+    | _ ->
+      Money.Dollar(10)
 
 type IExpr =
   abstract Reduce: Bank * string -> Money
