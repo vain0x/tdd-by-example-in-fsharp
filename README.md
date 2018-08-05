@@ -64,9 +64,9 @@ dotnet test MulticurrencyTests
 ## TODOs
 
 - $10 + 5 CHF = $10 (rate 2:1)
-- $5 + $5 = $10
+- [x] $5 + $5 = $10
 - $5 + $5 : Money
-- Bank.reduce
+- [x] Bank.reduce
 
 ## Links
 
