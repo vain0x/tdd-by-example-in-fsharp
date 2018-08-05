@@ -35,6 +35,14 @@ module MoneyTests =
     bank.Reduce(five, "USD") |> is five
 
   [<Fact>]
+  let testReduceSum () =
+    let bank = Bank()
+    let three = Money.Dollar(3)
+    let four = Money.Dollar(4)
+    let sum = three.Plus(four)
+    bank.Reduce(sum, "USD") |> is (Money.Dollar(7))
+
+  [<Fact>]
   let testEquality () =
     Money.Dollar(5) |> is (Money.Dollar(5))
     Money.Dollar(5) <> Money.Dollar(6) |> is true
