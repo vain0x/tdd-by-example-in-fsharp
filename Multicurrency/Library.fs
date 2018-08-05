@@ -19,13 +19,7 @@ type Money(amount: int, currency: string) =
     0
 
   static member Dollar(amount: int) =
-    Dollar(amount) :> Money
+    Money(amount, "USD")
 
   static member Franc(amount: int) =
-    Franc(amount) :> Money
-
-type Dollar(amount: int) =
-  inherit Money(amount, "USD")
-
-type Franc(amount: int) =
-  inherit Money(amount, "CHF")
+    Money(amount, "CHF")

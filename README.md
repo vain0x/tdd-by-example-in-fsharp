@@ -69,13 +69,13 @@ dotnet test MulticurrencyTests
 - [x] hashCode
 - ~~compare with null~~ (no problem in F#)
 - compare with objects of different type
-- duplication between Dollar and Franc
+- [x] duplication between Dollar and Franc
 - [x] generalize equals
 - generalize hashCode
-- ~~generalize times~~
+- [x] generalize times
 - [x] compare Dollar and Franc
-- ~~currencies~~
-- remove Franc.testMultiplication
+- [x] currencies
+- [x] remove Franc.testMultiplication
 
 ## Links
 

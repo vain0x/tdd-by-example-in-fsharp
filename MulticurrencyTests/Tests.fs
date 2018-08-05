@@ -13,7 +13,7 @@ module CurrencyTests =
     Money.Dollar(1).Currency |> is "USD"
     Money.Franc(1).Currency |> is "CHF"
 
-module DollarTests =
+module MoneyTests =
   [<Fact>]
   let testMultiplication () =
     let five = Money.Dollar(5)
@@ -26,15 +26,3 @@ module DollarTests =
     Money.Dollar(5) <> Money.Dollar(6) |> is true
     Money.Dollar(5).Equals(Money.Franc(5)) |> is false
     Money(5, "CHF") |> is (Money.Franc(5))
-
-module FrancTests =
-  [<Fact>]
-  let testMultiplication () =
-    let five = Money.Franc(5)
-    five.Times(2) |> is (Money.Franc(10))
-    five.Times(3) |> is (Money.Franc(15))
-
-  [<Fact>]
-  let testEquality () =
-    Money.Franc(5) |> is (Money.Franc(5))
-    Money.Franc(5) <> Money.Franc(6) |> is true
