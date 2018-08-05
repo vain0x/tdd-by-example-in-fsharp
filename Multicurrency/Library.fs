@@ -1,5 +1,12 @@
 namespace rec Multicurrency
 
+type Bank() =
+  member this.Reduce(expr: IExpr, currency: string) =
+    Money.Dollar(10)
+
+type IExpr =
+  abstract Reduce: Bank * string -> Money
+
 type Money(amount: int, currency: string) =
   member private this.Amount = amount
 
@@ -26,3 +33,7 @@ type Money(amount: int, currency: string) =
 
   static member Franc(amount: int) =
     Money(amount, "CHF")
+
+  interface IExpr with
+    override this.Reduce(bank, target) =
+      failwith "no impl"

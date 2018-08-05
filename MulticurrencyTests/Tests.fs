@@ -22,8 +22,11 @@ module MoneyTests =
 
   [<Fact>]
   let testSimplePlus () =
+    let bank = Bank()
     let five = Money.Dollar(5)
-    five.Plus(five) |> is (Money.Dollar(5 + 5))
+    let sum = five.Plus(five)
+    let reduced = bank.Reduce(sum, "USD")
+    reduced |> is (Money.Dollar(5 + 5))
 
   [<Fact>]
   let testEquality () =
