@@ -21,6 +21,11 @@ module MoneyTests =
     five.Times(3) |> is (Money.Dollar(15))
 
   [<Fact>]
+  let testSimplePlus () =
+    let five = Money.Dollar(5)
+    five.Plus(five) |> is (Money.Dollar(5 + 5))
+
+  [<Fact>]
   let testEquality () =
     Money.Dollar(5) |> is (Money.Dollar(5))
     Money.Dollar(5) <> Money.Dollar(6) |> is true

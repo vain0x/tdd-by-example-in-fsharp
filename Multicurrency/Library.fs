@@ -5,6 +5,9 @@ type Money(amount: int, currency: string) =
 
   member this.Currency = currency
 
+  member this.Plus(right: Money) =
+    Money(amount + right.Amount, currency)
+
   member this.Times(multiplier) =
     Money(amount * multiplier, this.Currency)
 
