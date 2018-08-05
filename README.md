@@ -54,6 +54,13 @@ dotnet test MulticurrencyTests
 - Improve equality defintion so that two currencies are distinct
 - Eliminate code duplication between the two types
 
+## 5. Money type
+
+- Add Money, base type of Dollar/Franc
+- Add field `currency`
+- Move methods to Money from Dollar/Franc
+- Remove Dollar/Franc
+
 ## TODOs
 
 - $10 + 5 CHF = $10 (rate 2:1)
