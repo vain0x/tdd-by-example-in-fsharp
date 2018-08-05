@@ -1,10 +1,18 @@
 namespace rec Multicurrency
 
 type Bank() =
+  member this.AddRate(source: string, target: string, rate: float) =
+    ()
+
+  member this.Rate(source: string, target: string) =
+    match source, target with
+    | "CHF", "USD" -> 2
+    | _ -> 1
+
   member this.Reduce(expr: IExpr, currency: string) =
     match expr with
     | :? Money as money ->
-      money
+      money.Reduce(this, currency)
     | :? MoneySum as sum ->
       sum.Reduce(this, currency)
     | _ ->
@@ -23,6 +31,10 @@ type Money(amount: int, currency: string) =
 
   member this.Times(multiplier) =
     Money(amount * multiplier, this.Currency)
+
+  member this.Reduce(bank: Bank, target) =
+    let rate = bank.Rate(currency, target)
+    Money(amount / rate, target)
 
   override this.Equals(obj :obj) =
     match obj with
@@ -48,7 +60,7 @@ type MoneySum =
   | MoneySum of Money * Money
 with
   member this.Reduce(bank, target) =
-    let (MoneySum(left, right)) = this
+    let (MoneySum (left, right)) = this
     Money(left.Amount + right.Amount, target)
 
   interface IExpr with
