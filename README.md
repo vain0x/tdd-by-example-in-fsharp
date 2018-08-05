@@ -64,25 +64,7 @@ dotnet test MulticurrencyTests
 ## TODOs
 
 - $10 + 5 CHF = $10 (rate 2:1)
-- $5 * 2 = $10
-- [x] no Dollar class
-- [x] no Dollar ctor
-- [x] no Times method
-- [x] no Amount field
-- [x] make amount private
-- [x] side effects of Dollar
-- round of Money
-- [x] equality
-- [x] hashCode
-- ~~compare with null~~ (no problem in F#)
-- compare with objects of different type
-- [x] duplication between Dollar and Franc
-- [x] generalize equals
-- generalize hashCode
-- [x] generalize times
-- [x] compare Dollar and Franc
-- [x] currencies
-- [x] remove Franc.testMultiplication
+- $5 + $5 = $10
 
 ## Links
 
