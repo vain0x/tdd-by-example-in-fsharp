@@ -1,13 +1,16 @@
 namespace rec Multicurrency
 
-type Bank() =
-  member this.AddRate(source: string, target: string, rate: float) =
-    ()
+type Bank(rates: Map<string * string, int>) =
+  new() = Bank(Map.empty)
+
+  member this.AddRate(source: string, target: string, rate: int) =
+    Bank(rates |> Map.add (source, target) rate)
 
   member this.Rate(source: string, target: string) =
-    match source, target with
-    | "CHF", "USD" -> 2
-    | _ -> 1
+    if source = target then
+      1
+    else
+      rates |> Map.find (source, target)
 
   member this.Reduce(expr: IExpr, currency: string) =
     match expr with

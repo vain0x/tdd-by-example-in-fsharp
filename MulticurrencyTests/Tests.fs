@@ -13,6 +13,12 @@ module CurrencyTests =
     Money.Dollar(1).Currency |> is "USD"
     Money.Franc(1).Currency |> is "CHF"
 
+module BankTests =
+  [<Fact>]
+  let testIdentityRate () =
+    let bank = Bank()
+    bank.Rate("USD", "USD") |> is 1
+
 module MoneyTests =
   [<Fact>]
   let testMultiplication () =
@@ -36,8 +42,7 @@ module MoneyTests =
 
   [<Fact>]
   let testReduceMoneyToDifferenceCurrency () =
-    let bank = Bank()
-    bank.AddRate("CHF", "USD", 2.0)
+    let bank = Bank().AddRate("CHF", "USD", 2)
     let two = Money.Franc(2)
     bank.Reduce(two, "USD") |> is (Money.Dollar(1))
 
