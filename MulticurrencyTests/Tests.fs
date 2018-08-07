@@ -4,7 +4,7 @@ open System
 open Xunit
 open Multicurrency
 
-let is<'T> (actual: 'T) (expected: 'T) =
+let inline is<'T> (actual: 'T) (expected: 'T) =
   Assert.Equal(expected, actual)
 
 module CurrencyTests =
