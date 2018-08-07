@@ -20,6 +20,9 @@ module BankTests =
     bank.Rate("USD", "USD") |> is 1
 
 module MoneyTests =
+
+  let defaultBank = Bank().AddRate("CHF", "USD", 2)
+
   [<Fact>]
   let testMultiplication () =
     let five = Money.Dollar(5)
@@ -28,57 +31,50 @@ module MoneyTests =
 
   [<Fact>]
   let testSimplePlus () =
-    let bank = Bank()
     let five = Money.Dollar(5)
     let sum = five.Plus(five)
-    let reduced = bank.Reduce(sum, "USD")
+    let reduced = defaultBank.Reduce(sum, "USD")
     reduced |> is (Money.Dollar(5 + 5))
 
   [<Fact>]
   let testMixedPlus () =
-    let bank = Bank().AddRate("CHF", "USD", 2)
     let fiveBucks = Money.Dollar(5)
     let tenFrancs = Money.Franc(10)
     let sum = fiveBucks.Plus(tenFrancs)
-    bank.Reduce(sum, "USD") |> is (Money.Dollar(10))
+    defaultBank.Reduce(sum, "USD") |> is (Money.Dollar(10))
 
   [<Fact>]
   let testSumPlusMoney () =
-    let bank = Bank().AddRate("CHF", "USD", 2)
     let fiveBucks = Money.Dollar(5)
     let tenFrancs = Money.Franc(10)
     let sum = (MoneySum (fiveBucks, tenFrancs)).Plus(fiveBucks)
-    let reduced = bank.Reduce(sum, "USD")
+    let reduced = defaultBank.Reduce(sum, "USD")
     reduced |> is (Money.Dollar(15))
 
   [<Fact>]
   let testSumTimes () =
-    let bank = Bank().AddRate("CHF", "USD", 2)
     let fiveBucks = Money.Dollar(5)
     let tenFrancs = Money.Franc(10)
     let sum = (MoneySum (fiveBucks, tenFrancs)).Times(3)
-    let reduced = bank.Reduce(sum, "USD")
+    let reduced = defaultBank.Reduce(sum, "USD")
     reduced |> is (Money.Dollar(30))
 
   [<Fact>]
   let testReduceMoney () =
-    let bank = Bank()
     let five = Money.Dollar(5)
-    bank.Reduce(five, "USD") |> is five
+    defaultBank.Reduce(five, "USD") |> is five
 
   [<Fact>]
   let testReduceMoneyToDifferenceCurrency () =
-    let bank = Bank().AddRate("CHF", "USD", 2)
     let two = Money.Franc(2)
-    bank.Reduce(two, "USD") |> is (Money.Dollar(1))
+    defaultBank.Reduce(two, "USD") |> is (Money.Dollar(1))
 
   [<Fact>]
   let testReduceSum () =
-    let bank = Bank()
     let three = Money.Dollar(3)
     let four = Money.Dollar(4)
     let sum = three.Plus(four)
-    bank.Reduce(sum, "USD") |> is (Money.Dollar(7))
+    defaultBank.Reduce(sum, "USD") |> is (Money.Dollar(7))
 
   [<Fact>]
   let testEquality () =
