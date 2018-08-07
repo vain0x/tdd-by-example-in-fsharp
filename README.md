@@ -61,12 +61,10 @@ dotnet test MulticurrencyTests
 - Move methods to Money from Dollar/Franc
 - Remove Dollar/Franc
 
-## TODOs
+## 5. Expression methaphor
 
-- [x] $10 + 5 CHF = $10 (rate 2:1)
-- [x] $5 + $5 = $10
-- ~~$5 + $5 : Money~~
-- [x] Bank.reduce
+- Add MoneySum type to represent a sum of money
+- Add interface `IExpr` for abstraction over `Money` and `MoneySum`
 
 ## Links
 
