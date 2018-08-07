@@ -24,6 +24,8 @@ type Bank(rates: Map<string * string, int>) =
 type IExpr =
   abstract Reduce: Bank * string -> Money
 
+  abstract Plus: IExpr -> IExpr
+
 type Money(amount: int, currency: string) =
   member this.Amount = amount
 
@@ -59,6 +61,9 @@ type Money(amount: int, currency: string) =
     override this.Reduce(bank, target) =
       this.Reduce(bank, target)
 
+    override this.Plus(right) =
+      this.Plus(right)
+
 type MoneySum =
   | MoneySum of IExpr * IExpr
 with
@@ -74,3 +79,6 @@ with
   interface IExpr with
     override this.Reduce(bank, target) =
       this.Reduce(bank, target)
+
+    override this.Plus(right) =
+      this.Plus(right)
