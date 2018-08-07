@@ -13,13 +13,7 @@ type Bank(rates: Map<string * string, int>) =
       rates |> Map.find (source, target)
 
   member this.Reduce(expr: IExpr, currency: string) =
-    match expr with
-    | :? Money as money ->
-      money.Reduce(this, currency)
-    | :? MoneySum as sum ->
-      sum.Reduce(this, currency)
-    | _ ->
-      Money.Dollar(10)
+    expr.Reduce(this, currency)
 
 type IExpr =
   abstract Reduce: Bank * string -> Money
