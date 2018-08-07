@@ -52,6 +52,15 @@ module MoneyTests =
     reduced |> is (Money.Dollar(15))
 
   [<Fact>]
+  let testSumTimes () =
+    let bank = Bank().AddRate("CHF", "USD", 2)
+    let fiveBucks = Money.Dollar(5)
+    let tenFrancs = Money.Franc(10)
+    let sum = (MoneySum (fiveBucks, tenFrancs)).Times(3)
+    let reduced = bank.Reduce(sum, "USD")
+    reduced |> is (Money.Dollar(30))
+
+  [<Fact>]
   let testReduceMoney () =
     let bank = Bank()
     let five = Money.Dollar(5)

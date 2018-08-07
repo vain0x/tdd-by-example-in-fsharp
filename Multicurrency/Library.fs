@@ -25,6 +25,7 @@ type IExpr =
   abstract Reduce: Bank * string -> Money
 
   abstract Plus: IExpr -> IExpr
+  abstract Times: int-> IExpr
 
 type Money(amount: int, currency: string) =
   member this.Amount = amount
@@ -64,11 +65,20 @@ type Money(amount: int, currency: string) =
     override this.Plus(right) =
       this.Plus(right)
 
+    override this.Times(mul) =
+      this.Times(mul) :> _
+
 type MoneySum =
   | MoneySum of IExpr * IExpr
 with
   member this.Plus(right): IExpr =
     MoneySum (this, right) :> IExpr
+
+  member this.Times(mul): IExpr =
+    let (MoneySum (left, right)) = this
+    let left = left.Times(mul)
+    let right= right.Times(mul)
+    MoneySum (left, right) :> IExpr
 
   member this.Reduce(bank, target) =
     let (MoneySum (left, right)) = this
@@ -82,3 +92,6 @@ with
 
     override this.Plus(right) =
       this.Plus(right)
+
+    override this.Times(mul) =
+      this.Times(mul)
