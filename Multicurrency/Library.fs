@@ -29,7 +29,7 @@ type Money(amount: int, currency: string) =
 
   member this.Currency = currency
 
-  member this.Plus(right: Money) =
+  member this.Plus(right: IExpr) =
     MoneySum (this, right) :> IExpr
 
   member this.Times(multiplier) =
@@ -62,6 +62,9 @@ type Money(amount: int, currency: string) =
 type MoneySum =
   | MoneySum of IExpr * IExpr
 with
+  member this.Plus(right): IExpr =
+    MoneySum (this, right) :> IExpr
+
   member this.Reduce(bank, target) =
     let (MoneySum (left, right)) = this
     let left = left.Reduce(bank, target)
