@@ -35,6 +35,14 @@ module MoneyTests =
     reduced |> is (Money.Dollar(5 + 5))
 
   [<Fact>]
+  let testMixedPlus () =
+    let bank = Bank().AddRate("CHF", "USD", 2)
+    let fiveBucks = Money.Dollar(5)
+    let tenFrancs = Money.Franc(10)
+    let sum = fiveBucks.Plus(tenFrancs)
+    bank.Reduce(sum, "USD") |> is (Money.Dollar(10))
+
+  [<Fact>]
   let testReduceMoney () =
     let bank = Bank()
     let five = Money.Dollar(5)

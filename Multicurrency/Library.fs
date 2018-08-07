@@ -30,7 +30,7 @@ type Money(amount: int, currency: string) =
   member this.Currency = currency
 
   member this.Plus(right: Money) =
-    MoneySum (this, right)
+    MoneySum (this, right) :> IExpr
 
   member this.Times(multiplier) =
     Money(amount * multiplier, this.Currency)
@@ -57,15 +57,17 @@ type Money(amount: int, currency: string) =
 
   interface IExpr with
     override this.Reduce(bank, target) =
-      failwith "no impl"
+      this.Reduce(bank, target)
 
 type MoneySum =
-  | MoneySum of Money * Money
+  | MoneySum of IExpr * IExpr
 with
   member this.Reduce(bank, target) =
     let (MoneySum (left, right)) = this
+    let left = left.Reduce(bank, target)
+    let right = right.Reduce(bank, target)
     Money(left.Amount + right.Amount, target)
 
   interface IExpr with
     override this.Reduce(bank, target) =
-      failwith "no impl"
+      this.Reduce(bank, target)
